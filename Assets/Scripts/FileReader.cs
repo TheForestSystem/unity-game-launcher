@@ -53,9 +53,11 @@ public class FileReader : MonoBehaviour
             List<StudentProjects> studentProjects = JSON_Reader.GetStudentProjects();
             if (studentProjects != null && studentProjects.Count > 0)
             {
-                // Make a new GameLauncher for the fitst project
-                StudentProjects project = studentProjects[0];
-                NewGameLauncher(project);
+                // Create new game launchers
+                foreach (StudentProjects project in studentProjects)
+                {
+                    NewGameLauncher(project);
+                }
             }
             else
             {
@@ -107,12 +109,13 @@ public class FileReader : MonoBehaviour
     private GameObject NewGameLauncher(StudentProjects project)
     {
         GameObject newGameLauncher = Instantiate(GameLauncherPrefab, GameLauncherParent.transform);
+        newGameLauncher.name = project.name;
 
         Image image = newGameLauncher.GetComponent<Image>();
         TextMeshProUGUI text = newGameLauncher.GetComponentInChildren<TextMeshProUGUI>();
 
         image.sprite = LoadImage(Path.Combine(PATH, project.cover)).Item1;
-        AdjustImageSize(image, LoadImage(Path.Combine(PATH, project.cover)).Item2);
+        //AdjustImageSize(image, LoadImage(Path.Combine(PATH, project.cover)).Item2);
         text.text = project.name;
 
         newGameLauncher.GetComponent<Button>().onClick.AddListener(() =>

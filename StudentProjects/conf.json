@@ -3,5 +3,10 @@
         "name": "Control",
         "cover": "Covers\\_-Control-Xbox-One-_.jpg",
         "path": "Programs\\control\\control.EXE"
+    },
+    {
+        "name": "Call of Duty\nBlack Ops 4",
+        "cover": "Covers\\81YNnRf7SOL.jpg",
+        "path": "Programs\\CoD\\CoD.EXE"
     }
 ]

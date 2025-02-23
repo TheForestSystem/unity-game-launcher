@@ -9,7 +9,6 @@ public static class JSON_Reader
 
     public static void Initialize(string path)
     {
-        Debug.Log($"Initializing JSON_Reader with path: {path}");
         configPath = path;
         LoadJson();
     }
@@ -24,11 +23,9 @@ public static class JSON_Reader
         }
 
         string json = File.ReadAllText(configPath);
-        Debug.Log($"Raw JSON: {json}");
 
         // Wrap the array in a JSON object so Unity's JsonUtility can parse it
         string wrappedJson = $"{{\"projects\":{json}}}";
-        Debug.Log($"Wrapped JSON: {wrappedJson}");
 
         StudentProjectsWrapper wrapper = JsonUtility.FromJson<StudentProjectsWrapper>(wrappedJson);
 
@@ -52,7 +49,9 @@ public static class JSON_Reader
 
     public static List<StudentProjects> GetStudentProjects()
     {
-        string msg = studentProjects != null ? $"Returning {studentProjects.Count} projects." : "No projects loaded.";
+        string msg = studentProjects != null ? 
+            $"Returning {studentProjects.Count} projects." : "No projects loaded.";
+
         Debug.Log(msg);
 
         return studentProjects;
